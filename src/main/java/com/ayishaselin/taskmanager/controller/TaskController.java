@@ -43,4 +43,18 @@ public class TaskController {
 
         return "redirect:/tasks";
     }
+
+    @GetMapping("/editTask/{id}")
+    public String editTask(@PathVariable Long id, Model model) {
+
+        Optional<Task> optionalTask = taskRepository.findById(id);
+
+        Task task = optionalTask.get();
+
+        model.addAttribute("task", task);
+
+        model.addAttribute("tasks", taskRepository.findAll());
+
+        return "index";
+    }
 }
