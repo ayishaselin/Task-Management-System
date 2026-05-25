@@ -8,4 +8,5 @@ List<Task> findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(
     String titleKeyword, 
     String descriptionKeyword);
 
+List<Task> findByStatusIgnoreCase(String status);
 }

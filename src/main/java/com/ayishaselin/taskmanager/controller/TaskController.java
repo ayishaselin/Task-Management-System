@@ -69,4 +69,27 @@ public class TaskController {
 
         return "index";
     }
+
+    @GetMapping("/filter")
+    public String filterTask(
+            @RequestParam String status,
+            Model model) {
+
+        if (status.equalsIgnoreCase("All")) {
+
+            model.addAttribute(
+                    "tasks",
+                    taskRepository.findAll());
+
+        } else {
+
+            model.addAttribute(
+                    "tasks",
+                    taskRepository.findByStatusIgnoreCase(status));
+        }
+
+        model.addAttribute("task", new Task());
+
+        return "index";
+    }
 }
