@@ -28,6 +28,18 @@ public class TaskController {
         return "index";
     }
 
+    @GetMapping("/search")
+    public String searchTask(@RequestParam String keyword, Model model) { // Take value from URL parameter
+
+        model.addAttribute(
+                "tasks",
+                taskRepository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(keyword, keyword));
+
+        model.addAttribute("task", new Task());// Send matching task list to HTML
+
+        return "index";
+    }
+
     @PostMapping("/saveTask")
     public String saveTask(@ModelAttribute Task task) {
 
