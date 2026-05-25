@@ -28,4 +28,19 @@ public class TaskController {
         return "index";
     }
 
+    @PostMapping("/saveTask")
+    public String saveTask(@ModelAttribute Task task) {
+
+        taskRepository.save(task);
+
+        return "redirect:/tasks";
+    }
+
+    @GetMapping("/deleteTask/{id}")
+    public String deleteTask(@PathVariable Long id) {
+
+        taskRepository.deleteById(id);
+
+        return "redirect:/tasks";
+    }
 }
