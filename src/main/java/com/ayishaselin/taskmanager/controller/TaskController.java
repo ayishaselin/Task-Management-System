@@ -107,4 +107,18 @@ public class TaskController {
 
         return "index";
     }
+
+   // @PostMapping("/updateStatus")
+    //public String updateStatus(
+       //     @RequestParam Long id,
+       //     @RequestParam String status) {
+
+       // Task task = taskRepository.findById(id).get();
+
+        //task.setStatus(status);
+
+       // taskRepository.save(task);
+
+       // return "redirect:/tasks";
+  //  }
 }
