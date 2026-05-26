@@ -37,11 +37,19 @@ public class TaskController {
 
         model.addAttribute("task", new Task());// Send matching task list to HTML
 
+        model.addAttribute("keyword", keyword);
+
         return "index";
     }
 
     @PostMapping("/saveTask")
     public String saveTask(@ModelAttribute Task task) {
+
+        if (task.getTitle() == null ||
+                task.getTitle().trim().isEmpty()) {
+
+            return "redirect:/tasks";
+        }
 
         taskRepository.save(task);
 
@@ -57,7 +65,8 @@ public class TaskController {
     }
 
     @GetMapping("/editTask/{id}")
-    public String editTask(@PathVariable Long id, Model model) {
+    public String editTask(@PathVariable Long id,
+            Model model) {
 
         Optional<Task> optionalTask = taskRepository.findById(id);
 
@@ -65,7 +74,11 @@ public class TaskController {
 
         model.addAttribute("task", task);
 
-        model.addAttribute("tasks", taskRepository.findAll());
+        model.addAttribute(
+                "tasks",
+                taskRepository.findAll());
+
+        model.addAttribute("editMode", true);
 
         return "index";
     }
@@ -89,6 +102,8 @@ public class TaskController {
         }
 
         model.addAttribute("task", new Task());
+
+        model.addAttribute("selectedStatus", status);
 
         return "index";
     }
