@@ -20,7 +20,7 @@ public class TaskController {
     private TaskRepository taskRepository;
 
     @GetMapping("/tasks")
-    public String getTasks(Model model) { // Model sends data from controller → HTML page
+    public String getTasks(Model model) { // Model sends data from controller which means HTML page
 
         model.addAttribute("tasks", taskRepository.findAll());// sends data to HTML.
         model.addAttribute("task", new Task());
@@ -108,17 +108,5 @@ public class TaskController {
         return "index";
     }
 
-   // @PostMapping("/updateStatus")
-    //public String updateStatus(
-       //     @RequestParam Long id,
-       //     @RequestParam String status) {
 
-       // Task task = taskRepository.findById(id).get();
-
-        //task.setStatus(status);
-
-       // taskRepository.save(task);
-
-       // return "redirect:/tasks";
-  //  }
 }
