@@ -17,6 +17,11 @@
 # MVC Architecture
 This application uses MVC architecture.
 
+# Database Setup
+- Create the MySQL database before running the project.
+
+CREATE DATABASE task_manager;
+
 
 
 # Run the Project
